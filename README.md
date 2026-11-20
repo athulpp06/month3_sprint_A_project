@@ -97,5 +97,20 @@ Open your browser at `http://localhost:8501`.
 
 ## Live Demo
 
-- **Backend API (Render)**: `https://your-backend-app.onrender.com`
-- **Frontend UI (Streamlit Community Cloud)**: `https://your-frontend-app.streamlit.app`
+- App (Streamlit): https://month3sprintaproject-qgmsekinagmxlq3zytksrw.streamlit.app
+- API docs (Swagger): https://month3-sprint-a-project.onrender.com/docs
+
+> **Note:** The application is hosted on free tiers. The backend service may spin down during periods of inactivity, so the first request after idle may take about a minute to wake up. In addition, handoff logs (`handoff_log.jsonl`) reset on service restart.
+
+### Deployment Settings
+
+- **Render** (Web Service):
+  - **Branch**: `athul-pp`
+  - **Build Command**: `pip install -r requirements.txt`
+  - **Start Command**: `uvicorn api:app --host 0.0.0.0 --port $PORT`
+  - **Health Check Path**: `/health`
+  - **Environment Variables**: `GROQ_API_KEY`
+- **Streamlit Community Cloud**:
+  - **Branch**: `athul-pp`
+  - **Main file path**: `frontend.py`
+  - **Secret**: `BACKEND_URL`
