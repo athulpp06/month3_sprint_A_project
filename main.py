@@ -1,7 +1,7 @@
 """Terminal loop interface for AI Financial Advisor Bot."""
 
 import sys
-from agents import run_query
+from advisor_agents import run_query
 
 
 def main():

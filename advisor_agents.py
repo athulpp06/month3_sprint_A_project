@@ -5,36 +5,18 @@ import concurrent.futures
 from datetime import datetime, timezone
 import json
 import os
-import sys
 from dotenv import load_dotenv
 from openai import AsyncOpenAI, NotFoundError
 from pydantic import BaseModel
 
-# Temporarily unregister our module to import installed OpenAI Agents SDK package
-our_mod = sys.modules.get("agents")
-if "agents" in sys.modules:
-    del sys.modules["agents"]
-
-_cur_dir = os.path.abspath(os.path.dirname(__file__))
-_saved_paths = [p for p in sys.path if os.path.abspath(p) == _cur_dir or p == ""]
-for p in _saved_paths:
-    sys.path.remove(p)
-
-import agents as _sdk_agents
-
-for p in reversed(_saved_paths):
-    sys.path.insert(0, p)
-
-if our_mod:
-    sys.modules["agents"] = our_mod
-
-Agent = _sdk_agents.Agent
-OpenAIChatCompletionsModel = _sdk_agents.OpenAIChatCompletionsModel
-Runner = _sdk_agents.Runner
-handoff = _sdk_agents.handoff
-set_default_openai_client = _sdk_agents.set_default_openai_client
-set_tracing_disabled = _sdk_agents.set_tracing_disabled
-
+from agents import (
+    Agent,
+    OpenAIChatCompletionsModel,
+    Runner,
+    handoff,
+    set_default_openai_client,
+    set_tracing_disabled,
+)
 from tools import (
     calculate_emi_tool,
     calculate_returns_tool,

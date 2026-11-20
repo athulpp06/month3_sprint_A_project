@@ -7,7 +7,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import RedirectResponse
 from pydantic import BaseModel
 
-from agents import LOG_FILE, run_query
+from advisor_agents import LOG_FILE, run_query
 
 app = FastAPI(
     title="AI Financial Advisor Bot API",

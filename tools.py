@@ -1,27 +1,6 @@
 """Financial calculation tools exposed for multi-agent financial advisory."""
 
-import os
-import sys
-
-# Temporarily unregister any shadowing to import installed OpenAI Agents SDK
-_our_mod = sys.modules.get("agents")
-if "agents" in sys.modules:
-    del sys.modules["agents"]
-
-_cur_dir = os.path.abspath(os.path.dirname(__file__))
-_saved_paths = [p for p in sys.path if os.path.abspath(p) == _cur_dir or p == ""]
-for p in _saved_paths:
-    sys.path.remove(p)
-
-import agents as _sdk_agents
-
-for p in reversed(_saved_paths):
-    sys.path.insert(0, p)
-
-if _our_mod:
-    sys.modules["agents"] = _our_mod
-
-function_tool = _sdk_agents.function_tool
+from agents import function_tool
 
 # Mock exchange rates for currency pairs
 MOCK_EXCHANGE_RATES = {
